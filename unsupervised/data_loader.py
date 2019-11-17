@@ -1,4 +1,3 @@
-Furqan Haider, [18.11.19 01:59]
 from torchvision import datasets
 import gzip
 import os
