@@ -312,13 +312,13 @@ class Solver(object):
                 class_correct[label] += correct[i].item()
                 class_total[label] += 1
 
-        # for i in range(self.num_classes):
-            # if class_total[i] > 0:
-            #     print('Test Accuracy (mnist-test) of %5s: %2d%% (%2d/%2d)' % (
-            #         str(i), 100 * class_correct[i] / class_total[i],
-            #         np.sum(class_correct[i]), np.sum(class_total[i])))
-            # else:
-            #     print('Test Accuracy (mnist-test) of %5s: N/A (no training examples)' % (classes[i]))
+        for i in range(self.num_classes):
+            if class_total[i] > 0:
+                print('Test Accuracy (mnist-test) of %5s: %2d%% (%2d/%2d)' % (
+                    str(i), 100 * class_correct[i] / class_total[i],
+                    np.sum(class_correct[i]), np.sum(class_total[i])))
+            else:
+                print('Test Accuracy (mnist-test) of %5s: N/A (no training examples)' % (classes[i]))
 
         print("\nTest Accuracy (mnist-test) (Overall): ", end="")
         print(colored('%2d%% ' % (100. * np.sum(class_correct) / np.sum(class_total)), "red"), end="")
@@ -352,13 +352,13 @@ class Solver(object):
 	            class_correct[label] += correct[i].item()
 	            class_total[label] += 1
 
-	    # for i in range(self.num_classes):
-	    #     if class_total[i] > 0:
-	    #         print('Test Accuracy (svhn-test) of %5s: %2d%% (%2d/%2d)' % (
-	    #             str(i), 100 * class_correct[i] / class_total[i],
-	    #             np.sum(class_correct[i]), np.sum(class_total[i])))
-	    #     else:
-	    #         print('Test Accuracy (svhn_test) of %5s: N/A (no training examples)' % (classes[i]))
+	    for i in range(self.num_classes):
+	        if class_total[i] > 0:
+	            print('Test Accuracy (svhn-test) of %5s: %2d%% (%2d/%2d)' % (
+	                str(i), 100 * class_correct[i] / class_total[i],
+	                np.sum(class_correct[i]), np.sum(class_total[i])))
+	        else:
+	            print('Test Accuracy (svhn_test) of %5s: N/A (no training examples)' % (classes[i]))
 
 	    print("\nTest Accuracy (svhn-test) (Overall): ", end="")
 	    print(colored('%2d%% ' % (100. * np.sum(class_correct) / np.sum(class_total)), "red"), end="")
