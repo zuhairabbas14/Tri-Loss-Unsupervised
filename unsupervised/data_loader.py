@@ -1,3 +1,4 @@
+Furqan Haider, [18.11.19 01:59]
 from torchvision import datasets
 import gzip
 import os
@@ -25,7 +26,7 @@ class USPS(data.Dataset):
 
     url = "https://github.com/mingyuliutw/CoGAN/raw/master/cogan_pytorch/data/uspssample/usps_28x28.pkl"
 
-    def __init__(self, root, train=True, transform=None, download=True):
+    def init(self, root, train=True, transform=None, download=True):
         """Init USPS dataset."""
         # init params
         self.root = os.path.expanduser(root)
@@ -53,7 +54,7 @@ class USPS(data.Dataset):
         self.train_data = self.train_data.transpose(
             (0, 2, 3, 1))  # convert to HWC
 
-    def __getitem__(self, index):
+    def getitem(self, index):
         """Get images and target for data loader.
         Args:
             index (int): Index
@@ -67,7 +68,7 @@ class USPS(data.Dataset):
         # label = torch.FloatTensor([label.item()])
         return img, label
 
-    def __len__(self):
+    def len(self):
         """Return size of dataset."""
         return self.dataset_size
 
@@ -104,7 +105,7 @@ class USPS(data.Dataset):
             self.dataset_size = labels.shape[0]
         return images, labels
 
-
+Furqan Haider, [18.11.19 01:59]
 class OFFICE(data.Dataset):
     """OFFICE 31 Dataset.
     Args:
@@ -118,7 +119,7 @@ class OFFICE(data.Dataset):
 
     url = ""
 
-    def __init__(self, root, train=True, transform=None, domain="amazon"):
+    def init(self, root, train=True, transform=None, domain="amazon"):
         """Init USPS dataset."""
         # init params
         self.root = os.path.expanduser(root)
@@ -144,7 +145,7 @@ class OFFICE(data.Dataset):
         self.train_data = self.train_data.transpose(
             (0, 2, 3, 1))  # convert to HWC
 
-    def __getitem__(self, index):
+    def getitem(self, index):
         """Get images and target for data loader.
         Args:
             index (int): Index
@@ -158,7 +159,7 @@ class OFFICE(data.Dataset):
         # label = torch.FloatTensor([label.item()])
         return img, label
 
-    def __len__(self):
+    def len(self):
         """Return size of dataset."""
         return self.dataset_size
 
@@ -206,7 +207,8 @@ def get_loader(config):
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-    svhn = datasets.SVHN(root=config.svhn_path, download=True, transform=svhn_transform)
+Furqan Haider, [18.11.19 01:59]
+svhn = datasets.SVHN(root=config.svhn_path, download=True, transform=svhn_transform)
     svhn_val = datasets.SVHN(root=config.svhn_path, download=True, split='test', transform=svhn_transform)
     svhn_extra = datasets.SVHN(root=config.svhn_path, download=True, split='extra', transform=svhn_transform)
 
@@ -249,9 +251,11 @@ def get_loader(config):
 
     if config.source == "mnist":
         if config.target  == "svhn":
-            return mnist_loader, svhn_loader, svhn_val_loader
+            return svhn_loader, svhn_val_loader, mnist_loader, mnist_val_loader
         elif config.target  == "svhn_extra":
             return mnist_loader, svhn_extra_loader, svhn_val_loader
+        elif config.target  == "mnist":
+            return mnist_loader, mnist_loader, mnist_loader, mnist_loader
         elif config.target  == "usps":
             return mnist_loader, usps_loader, usps_val_loader
         else:
