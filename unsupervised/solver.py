@@ -278,7 +278,7 @@ class Solver(object):
 
                 if acc > maximum_acc:
                     maximum_acc = acc
-                    max_iter = step
+                max_iter = step
 
                 if acc > maxacc:
                     maxacc = acc
