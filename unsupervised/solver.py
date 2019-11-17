@@ -216,8 +216,8 @@ class Solver(object):
             source, s_labels = source_iter.next()
             source, s_labels = self.to_var(source), self.to_var(s_labels).long().squeeze()  # must squeeze
 
-            source_val, s_val_labels = source_val_iter.next()
-            source_val, s_val_labels = self.to_var(source_val), self.to_var(s_val_labels).long().squeeze() 
+#             source_val, s_val_labels = source_val_iter.next()
+#             source_val, s_val_labels = self.to_var(source_val), self.to_var(s_val_labels).long().squeeze() 
 
             target, t_labels = target_iter.next()
             target_rgb = target
